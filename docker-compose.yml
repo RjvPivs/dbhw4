@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "savenko_206"
+      POSTGRES_USER: "savenko_206"
+      POSTGRES_PASSWORD: "savenko_206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/Library.sql:/docker-entrypoint-initdb.d/Library.sql
+      - ./docker/db/scripts/Personell.sql:/docker-entrypoint-initdb.d/P.sql
+      - ./docker/db/scripts/Schedule.sql:/docker-entrypoint-initdb.d/S.sql
+
+      - ./dz:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
